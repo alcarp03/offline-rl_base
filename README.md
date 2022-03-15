@@ -1,3 +1,3 @@
-# TJU_Offline RL_Base
+# Offline RL_Base
 
-TJU Offline RL
+Offline RL Base
