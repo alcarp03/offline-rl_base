@@ -24,6 +24,8 @@ from ..online.iterators import (
     collect,
     train_batch_env,
     train_single_env,
+    train_single_env_redq,
+    train_single_env_erbr,
 )
 
 
@@ -44,6 +46,14 @@ def _assert_action_space(algo: LearnableBase, env: gym.Env) -> None:
 class AlgoImplBase(ImplBase):
     @abstractmethod
     def save_policy(self, fname: str) -> None:
+        pass
+
+    @abstractmethod
+    def save_qf1(self, fname: str) -> None:
+        pass
+
+    @abstractmethod
+    def save_qf2(self, fname: str) -> None:
         pass
 
     @abstractmethod
@@ -114,6 +124,14 @@ class AlgoBase(LearnableBase):
         """
         assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
         self._impl.save_policy(fname)
+
+    def save_qf1(self, fname: str) -> None:
+        assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
+        self._impl.save_qf1(fname)
+
+    def save_qf2(self, fname: str) -> None:
+        assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
+        self._impl.save_qf2(fname)
 
     def predict(self, x: Union[np.ndarray, List[Any]]) -> np.ndarray:
         """Returns greedy actions.
@@ -260,6 +278,116 @@ class AlgoBase(LearnableBase):
         _assert_action_space(self, env)
 
         train_single_env(
+            algo=self,
+            env=env,
+            buffer=buffer,
+            explorer=explorer,
+            n_steps=n_steps,
+            n_steps_per_epoch=n_steps_per_epoch,
+            update_interval=update_interval,
+            update_start_step=update_start_step,
+            random_steps=random_steps,
+            eval_env=eval_env,
+            eval_epsilon=eval_epsilon,
+            save_metrics=save_metrics,
+            save_interval=save_interval,
+            experiment_name=experiment_name,
+            with_timestamp=with_timestamp,
+            logdir=logdir,
+            verbose=verbose,
+            show_progress=show_progress,
+            tensorboard_dir=tensorboard_dir,
+            timelimit_aware=timelimit_aware,
+            callback=callback,
+        )
+
+    def fit_online_redq(
+        self,
+        env: gym.Env,
+        buffer: Optional[Buffer] = None,
+        explorer: Optional[Explorer] = None,
+        n_steps: int = 1000000,
+        n_steps_per_epoch: int = 10000,
+        update_interval: int = 1,
+        update_start_step: int = 0,
+        random_steps: int = 0,
+        eval_env: Optional[gym.Env] = None,
+        eval_epsilon: float = 0.0,
+        save_metrics: bool = True,
+        save_interval: int = 1,
+        experiment_name: Optional[str] = None,
+        with_timestamp: bool = True,
+        logdir: str = "d3rlpy_logs",
+        verbose: bool = True,
+        show_progress: bool = True,
+        tensorboard_dir: Optional[str] = None,
+        timelimit_aware: bool = True,
+        callback: Optional[Callable[[AlgoProtocol, int, int], None]] = None,
+    ) -> None:
+
+        # create default replay buffer
+        if buffer is None:
+            buffer = ReplayBuffer(1000000, env=env)
+
+        # check action-space
+        _assert_action_space(self, env)
+
+        train_single_env_redq(
+            algo=self,
+            env=env,
+            buffer=buffer,
+            explorer=explorer,
+            n_steps=n_steps,
+            n_steps_per_epoch=n_steps_per_epoch,
+            update_interval=update_interval,
+            update_start_step=update_start_step,
+            random_steps=random_steps,
+            eval_env=eval_env,
+            eval_epsilon=eval_epsilon,
+            save_metrics=save_metrics,
+            save_interval=save_interval,
+            experiment_name=experiment_name,
+            with_timestamp=with_timestamp,
+            logdir=logdir,
+            verbose=verbose,
+            show_progress=show_progress,
+            tensorboard_dir=tensorboard_dir,
+            timelimit_aware=timelimit_aware,
+            callback=callback,
+        )
+
+    def fit_online_erbr(
+        self,
+        env: gym.Env,
+        buffer: Optional[Buffer] = None,
+        explorer: Optional[Explorer] = None,
+        n_steps: int = 1000000,
+        n_steps_per_epoch: int = 10000,
+        update_interval: int = 1,
+        update_start_step: int = 0,
+        random_steps: int = 0,
+        eval_env: Optional[gym.Env] = None,
+        eval_epsilon: float = 0.0,
+        save_metrics: bool = True,
+        save_interval: int = 1,
+        experiment_name: Optional[str] = None,
+        with_timestamp: bool = True,
+        logdir: str = "d3rlpy_logs",
+        verbose: bool = True,
+        show_progress: bool = True,
+        tensorboard_dir: Optional[str] = None,
+        timelimit_aware: bool = True,
+        callback: Optional[Callable[[AlgoProtocol, int, int], None]] = None,
+    ) -> None:
+
+        # create default replay buffer
+        if buffer is None:
+            buffer = ReplayBuffer(1000000, env=env)
+
+        # check action-space
+        _assert_action_space(self, env)
+
+        train_single_env_erbr(
             algo=self,
             env=env,
             buffer=buffer,
