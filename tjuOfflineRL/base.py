@@ -751,6 +751,14 @@ class LearnableBase:
     def _update(self, batch: TransitionMiniBatch) -> Dict[str, float]:
         raise NotImplementedError
 
+    def update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
+        loss = self._update_redq(batch, i_update)
+        self._grad_step += 1
+        return loss
+
+    def _update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
+        raise NotImplementedError
+
     def generate_new_data(
         self, transitions: List[Transition]
     ) -> Optional[List[Transition]]:
