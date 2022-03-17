@@ -2,6 +2,7 @@ from typing import List, Optional, Union, cast
 
 import torch
 from torch import nn
+import random
 
 from .base import ContinuousQFunction, DiscreteQFunction
 
@@ -133,6 +134,36 @@ class EnsembleQFunction(nn.Module):  # type: ignore
 
         return _reduce_quantile_ensemble(values, reduction, lam=lam)
 
+    def _compute_target_redq(
+        self,
+        x: torch.Tensor,
+        action: Optional[torch.Tensor] = None,
+        reduction: str = "min",
+        lam: float = 0.75,
+    ) -> torch.Tensor:
+        values_list_temp: List[torch.Tensor] = []
+        for q_func in self._q_funcs:
+            target = q_func.compute_target(x, action)
+            values_list_temp.append(target.reshape(1, x.shape[0], -1))
+
+        values_list = random.sample(values_list_temp, 2)
+
+        values = torch.cat(values_list, dim=0)
+
+        if action is None:
+            # mean Q function
+            if values.shape[2] == self._action_size:
+                return _reduce_ensemble(values, reduction)
+            # distributional Q function
+            n_q_funcs = values.shape[0]
+            values = values.view(n_q_funcs, x.shape[0], self._action_size, -1)
+            return _reduce_quantile_ensemble(values, reduction)
+
+        if values.shape[2] == 1:
+            return _reduce_ensemble(values, reduction, lam=lam)
+
+        return _reduce_quantile_ensemble(values, reduction, lam=lam)
+
     @property
     def q_funcs(self) -> nn.ModuleList:
         return self._q_funcs
@@ -182,3 +213,12 @@ class EnsembleContinuousQFunction(EnsembleQFunction):
         lam: float = 0.75,
     ) -> torch.Tensor:
         return self._compute_target(x, action, reduction, lam)
+
+    def compute_target_redq(
+        self,
+        x: torch.Tensor,
+        action: torch.Tensor,
+        reduction: str = "min",
+        lam: float = 0.75,
+    ) -> torch.Tensor:
+        return self._compute_target_redq(x, action, reduction, lam)
