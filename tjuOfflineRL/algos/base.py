@@ -13,7 +13,7 @@ from ..constants import (
 )
 from ..online.buffers import Buffer, ReplayBuffer
 from ..online.explorers import Explorer
-from ..online.iterators import AlgoProtocol, collect, train_single_env
+from ..online.iterators import AlgoProtocol, collect, train_single_env, train_single_env_redq
 
 
 def _assert_action_space(algo: LearnableBase, env: gym.Env) -> None:
