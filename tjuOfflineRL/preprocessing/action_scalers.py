@@ -99,8 +99,8 @@ class MinMaxActionScaler(ActionScaler):
 
     .. code-block:: python
 
-        from d3rlpy.dataset import MDPDataset
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.dataset import MDPDataset
+        from tjuOfflineRL.algos import CQL
 
         dataset = MDPDataset(observations, actions, rewards, terminals)
 
@@ -113,12 +113,12 @@ class MinMaxActionScaler(ActionScaler):
             transitions += episode.transitions
         cql.fit(transitions)
 
-    You can also initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can also initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import MinMaxActionScaler
+        from tjuOfflineRL.preprocessing import MinMaxActionScaler
 
         # initialize with dataset
         scaler = MinMaxActionScaler(dataset)
@@ -131,7 +131,7 @@ class MinMaxActionScaler(ActionScaler):
         cql = CQL(action_scaler=action_scaler)
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         min (numpy.ndarray): minimum values at each entry.
         max (numpy.ndarray): maximum values at each entry.
 

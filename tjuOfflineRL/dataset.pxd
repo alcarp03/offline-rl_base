@@ -3,7 +3,7 @@ from libcpp.memory cimport make_shared, shared_ptr
 from libcpp.vector cimport vector
 
 
-cdef extern from "d3rlpy/dataset.h" namespace "d3rlpy" nogil:
+cdef extern from "tjuOfflineRL/dataset.h" namespace "tjuOfflineRL" nogil:
     cdef cppclass CTransition:
         vector[int] observation_shape
         int action_size

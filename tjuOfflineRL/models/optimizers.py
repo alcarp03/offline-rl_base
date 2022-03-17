@@ -16,8 +16,8 @@ class OptimizerFactory:
     .. code-block:: python
 
         from torch.optim Adam
-        from d3rlpy.optimizers import OptimizerFactory
-        from d3rlpy.algos import DQN
+        from tjuOfflineRL.optimizers import OptimizerFactory
+        from tjuOfflineRL.algos import DQN
 
         factory = OptimizerFactory(Adam, eps=0.001)
 
@@ -74,7 +74,7 @@ class SGDFactory(OptimizerFactory):
 
     .. code-block:: python
 
-        from d3rlpy.optimizers import SGDFactory
+        from tjuOfflineRL.optimizers import SGDFactory
 
         factory = SGDFactory(weight_decay=1e-4)
 
@@ -108,7 +108,7 @@ class AdamFactory(OptimizerFactory):
 
     .. code-block:: python
 
-        from d3rlpy.optimizers import AdamFactory
+        from tjuOfflineRL.optimizers import AdamFactory
 
         factory = AdamFactory(weight_decay=1e-4)
 
@@ -143,7 +143,7 @@ class RMSpropFactory(OptimizerFactory):
 
     .. code-block:: python
 
-        from d3rlpy.optimizers import RMSpropFactory
+        from tjuOfflineRL.optimizers import RMSpropFactory
 
         factory = RMSpropFactory(weight_decay=1e-4)
 

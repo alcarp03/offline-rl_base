@@ -122,13 +122,13 @@ class FQE(_FQEBase):
           <https://arxiv.org/abs/1903.08738>`_
 
     Args:
-        algo (d3rlpy.algos.base.AlgoBase): algorithm to evaluate.
+        algo (tjuOfflineRL.algos.base.AlgoBase): algorithm to evaluate.
         learning_rate (float): learning rate.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory or str):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory or str):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
-        q_func_factory (d3rlpy.models.q_functions.QFunctionFactory or str):
+        q_func_factory (tjuOfflineRL.models.q_functions.QFunctionFactory or str):
             Q function factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -136,16 +136,16 @@ class FQE(_FQEBase):
         gamma (float): discount factor.
         n_critics (int): the number of Q functions for ensemble.
         target_update_interval (int): interval to update the target network.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action preprocessor. The available options are ``['min_max']``.
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.metrics.ope.torch.FQEImpl): algorithm implementation.
+        impl (tjuOfflineRL.metrics.ope.torch.FQEImpl): algorithm implementation.
 
     """
 
@@ -194,13 +194,13 @@ class DiscreteFQE(_FQEBase):
           <https://arxiv.org/abs/1903.08738>`_
 
     Args:
-        algo (d3rlpy.algos.base.AlgoBase): algorithm to evaluate.
+        algo (tjuOfflineRL.algos.base.AlgoBase): algorithm to evaluate.
         learning_rate (float): learning rate.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory or str):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory or str):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
-        q_func_factory (d3rlpy.models.q_functions.QFunctionFactory or str):
+        q_func_factory (tjuOfflineRL.models.q_functions.QFunctionFactory or str):
             Q function factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -208,14 +208,14 @@ class DiscreteFQE(_FQEBase):
         gamma (float): discount factor.
         n_critics (int): the number of Q functions for ensemble.
         target_update_interval (int): interval to update the target network.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.metrics.ope.torch.FQEImpl): algorithm implementation.
+        impl (tjuOfflineRL.metrics.ope.torch.FQEImpl): algorithm implementation.
 
     """
 

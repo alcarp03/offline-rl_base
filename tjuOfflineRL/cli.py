@@ -44,7 +44,7 @@ def get_plt() -> "matplotlib.pyplot":
 
 @click.group()
 def cli() -> None:
-    print(f"d3rlpy command line interface (Version {__version__})")
+    print(f"tjuOfflineRL command line interface (Version {__version__})")
 
 
 @cli.command(short_help="Show statistics of save metrics.")

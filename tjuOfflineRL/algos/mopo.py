@@ -67,17 +67,17 @@ class MOPO(ModelBaseMixin, AlgoBase):
         actor_learning_rate (float): learning rate for policy function.
         critic_learning_rate (float): learning rate for Q functions.
         temp_learning_rate (float): learning rate for temperature parameter.
-        actor_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        actor_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the actor.
-        critic_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        critic_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the critic.
-        temp_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        temp_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the temperature.
-        actor_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        actor_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the actor.
-        critic_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        critic_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the critic.
-        q_func_factory (d3rlpy.models.q_functions.QFunctionFactory or str):
+        q_func_factory (tjuOfflineRL.models.q_functions.QFunctionFactory or str):
             Q function factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -87,7 +87,7 @@ class MOPO(ModelBaseMixin, AlgoBase):
         n_critics (int): the number of Q functions for ensemble.
         update_actor_interval (int): interval to update policy function.
         initial_temperature (float): initial temperature value.
-        dynamics (d3rlpy.dynamics.DynamicsBase): dynamics object.
+        dynamics (tjuOfflineRL.dynamics.DynamicsBase): dynamics object.
         rollout_interval (int): the number of steps before rollout.
         rollout_horizon (int): the rollout step length.
         rollout_batch_size (int): the number of initial transitions for
@@ -95,16 +95,16 @@ class MOPO(ModelBaseMixin, AlgoBase):
         lam (float): :math:`\lambda` for uncertainty penalties.
         real_ratio (float): the real of dataset samples in a mini-batch.
         generated_maxlen (int): the maximum number of generated samples.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action preprocessor. The available options are ``['min_max']``.
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.algos.torch.sac_impl.SACImpl): algorithm implementation.
+        impl (tjuOfflineRL.algos.torch.sac_impl.SACImpl): algorithm implementation.
 
     """
 

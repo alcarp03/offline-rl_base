@@ -332,7 +332,7 @@ class DenseEncoderFactory(EncoderFactory):
 
     .. code-block:: python
 
-       from d3rlpy.encoders import VectorEncoderFactory
+       from tjuOfflineRL.encoders import VectorEncoderFactory
 
        factory = VectorEncoderFactory(hidden_units=[256, 256, 256, 256],
                                       use_dense=True)

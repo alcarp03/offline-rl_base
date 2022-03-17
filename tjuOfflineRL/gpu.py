@@ -22,8 +22,8 @@ class Device:
 
     .. code-block:: python
 
-        from d3rlpy.context import parallel
-        from d3rlpy.algos.cql import CQL
+        from tjuOfflineRL.context import parallel
+        from tjuOfflineRL.algos.cql import CQL
         from sklearn.model_selection import cross_validate
 
         cql = CQL(use_gpu=True)

@@ -23,14 +23,14 @@ DISCRETE_ACTION_SPACE_MISMATCH_ERROR = (
     "The action-space of the given dataset is not compatible with the"
     " algorithm. Please use discrete action-space algorithms. The algorithms"
     " list is available below.\n"
-    f"https://d3rlpy.readthedocs.io/en/v{__version__}/references/algos.html"
+    f"https://tjuOfflineRL.readthedocs.io/en/v{__version__}/references/algos.html"
 )
 
 CONTINUOUS_ACTION_SPACE_MISMATCH_ERROR = (
     "The action-space of the given dataset is not compatible with the"
     " algorithm. Please use continuous action-space algorithms. The algorithm"
     " list is available below.\n"
-    f"https://d3rlpy.readthedocs.io/en/v{__version__}/references/algos.html"
+    f"https://tjuOfflineRL.readthedocs.io/en/v{__version__}/references/algos.html"
 )
 
 

@@ -11,13 +11,13 @@ if TYPE_CHECKING:
 
 
 class SB3Wrapper:
-    """A wrapper for d3rlpy algorithms so they can be used with Stable-Baselines3 (SB3).
+    """A wrapper for tjuOfflineRL algorithms so they can be used with Stable-Baselines3 (SB3).
 
     Args:
-        algo (d3rlpy.algos.base.AlgoBase): algorithm.
+        algo (tjuOfflineRL.algos.base.AlgoBase): algorithm.
 
     Attributes:
-        algo (d3rlpy.algos.base.AlgoBase): algorithm.
+        algo (tjuOfflineRL.algos.base.AlgoBase): algorithm.
 
     """
 
@@ -61,13 +61,13 @@ class SB3Wrapper:
 
 
 def to_mdp_dataset(replay_buffer: "ReplayBuffer") -> MDPDataset:
-    """Returns d3rlpy's MDPDataset from SB3's ReplayBuffer
+    """Returns tjuOfflineRL's MDPDataset from SB3's ReplayBuffer
 
     Args:
         replay_buffer: SB3's replay buffer.
 
     Returns:
-        d3rlpy's MDPDataset.
+        tjuOfflineRL's MDPDataset.
 
     """
     pos = replay_buffer.size()

@@ -130,7 +130,7 @@ class MDPDataset:
 
     .. code-block:: python
 
-        from d3rlpy.dataset import MDPDataset
+        from tjuOfflineRL.dataset import MDPDataset
 
         # 1000 steps of observations with shape of (100,)
         observations = np.random.random((1000, 100))
@@ -144,7 +144,7 @@ class MDPDataset:
         dataset = MDPDataset(observations, actions, rewards, terminals)
 
     The MDPDataset object automatically splits the given data into list of
-    :class:`d3rlpy.dataset.Episode` objects.
+    :class:`tjuOfflineRL.dataset.Episode` objects.
     Furthermore, the MDPDataset object behaves like a list in order to use with
     scikit-learn utilities.
 
@@ -284,8 +284,8 @@ class MDPDataset:
         """ Returns the episodes.
 
         Returns:
-            list(d3rlpy.dataset.Episode):
-                list of :class:`d3rlpy.dataset.Episode` objects.
+            list(tjuOfflineRL.dataset.Episode):
+                list of :class:`tjuOfflineRL.dataset.Episode` objects.
 
         """
         if self._episodes is None:
@@ -488,7 +488,7 @@ class MDPDataset:
         """ Extend dataset by another dataset.
 
         Args:
-            dataset (d3rlpy.dataset.MDPDataset): dataset.
+            dataset (tjuOfflineRL.dataset.MDPDataset): dataset.
 
         """
         assert self.is_action_discrete() == dataset.is_action_discrete(),\
@@ -528,7 +528,7 @@ class MDPDataset:
         .. code-block:: python
 
             import numpy as np
-            from d3rlpy.dataset import MDPDataset
+            from tjuOfflineRL.dataset import MDPDataset
 
             dataset = MDPDataset(np.random.random(10, 4),
                                  np.random.random(10, 2),
@@ -605,7 +605,7 @@ class Episode:
     This class is designed to hold data collected in a single episode.
 
     Episode object automatically splits data into list of
-    :class:`d3rlpy.dataset.Transition` objects.
+    :class:`tjuOfflineRL.dataset.Transition` objects.
     Also Episode object behaves like a list object for ease of access to
     transitions.
 
@@ -709,8 +709,8 @@ class Episode:
         """ Returns the transitions.
 
         Returns:
-            list(d3rlpy.dataset.Transition):
-                list of :class:`d3rlpy.dataset.Transition` objects.
+            list(tjuOfflineRL.dataset.Transition):
+                list of :class:`tjuOfflineRL.dataset.Transition` objects.
 
         """
         if self._transitions is None:
@@ -803,9 +803,9 @@ cdef class Transition:
         reward (float): reward at `t`.
         next_observation (numpy.ndarray): observation at `t+1`.
         terminal (int): terminal flag at `t+1`.
-        prev_transition (d3rlpy.dataset.Transition):
+        prev_transition (tjuOfflineRL.dataset.Transition):
             pointer to the previous transition.
-        next_transition (d3rlpy.dataset.Transition):
+        next_transition (tjuOfflineRL.dataset.Transition):
             pointer to the next transition.
 
     """
@@ -976,7 +976,7 @@ cdef class Transition:
         If this is the first transition, this method should return ``None``.
 
         Returns:
-            d3rlpy.dataset.Transition: previous transition.
+            tjuOfflineRL.dataset.Transition: previous transition.
 
         """
         return self._prev_transition
@@ -986,7 +986,7 @@ cdef class Transition:
         """ Sets transition to ``prev_transition``.
 
         Args:
-            d3rlpy.dataset.Transition: previous transition.
+            tjuOfflineRL.dataset.Transition: previous transition.
 
         """
         assert isinstance(transition, Transition)
@@ -1002,7 +1002,7 @@ cdef class Transition:
         If this is the last transition, this method should return ``None``.
 
         Returns:
-            d3rlpy.dataset.Transition: next transition.
+            tjuOfflineRL.dataset.Transition: next transition.
 
         """
         return self._next_transition
@@ -1012,7 +1012,7 @@ cdef class Transition:
         """ Sets transition to ``next_transition``.
 
         Args:
-            d3rlpy.dataset.Dataset: next transition.
+            tjuOfflineRL.dataset.Dataset: next transition.
 
         """
         assert isinstance(transition, Transition)
@@ -1037,7 +1037,7 @@ def trace_back_and_clear(transition):
     """ Traces transitions and clear all links.
 
     Args:
-        transition (d3rlpy.dataset.Transition): transition.
+        transition (tjuOfflineRL.dataset.Transition): transition.
 
     """
     while True:
@@ -1099,7 +1099,7 @@ cdef void _stack_frames(
 cdef class TransitionMiniBatch:
     """ mini-batch of Transition objects.
 
-    This class is designed to hold :class:`d3rlpy.dataset.Transition` objects
+    This class is designed to hold :class:`tjuOfflineRL.dataset.Transition` objects
     for being passed to algorithms during fitting.
 
     If the observation is image, you can stack arbitrary frames via
@@ -1121,7 +1121,7 @@ cdef class TransitionMiniBatch:
     ``prev_transition`` property.
 
     Args:
-        transitions (list(d3rlpy.dataset.Transition)):
+        transitions (list(tjuOfflineRL.dataset.Transition)):
             mini-batch of transitions.
         n_frames (int): the number of frames to stack for image observation.
         n_steps (int): length of N-step sampling.
@@ -1409,7 +1409,7 @@ cdef class TransitionMiniBatch:
         """ Returns transitions.
 
         Returns:
-            d3rlpy.dataset.Transition: list of transitions.
+            tjuOfflineRL.dataset.Transition: list of transitions.
 
         """
         return self._transitions

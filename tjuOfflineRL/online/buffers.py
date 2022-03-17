@@ -172,7 +172,7 @@ class _Buffer(metaclass=ABCMeta):
         """Returns a FIFO queue of transitions.
 
         Returns:
-            d3rlpy.online.buffers.FIFOQueue: FIFO queue of transitions.
+            tjuOfflineRL.online.buffers.FIFOQueue: FIFO queue of transitions.
 
         """
         return self._transitions
@@ -227,7 +227,7 @@ class ReplayBuffer(BasicSampleMixin, Buffer):
     Args:
         maxlen (int): the maximum number of data length.
         env (gym.Env): gym-like environment to extract shape information.
-        episodes (list(d3rlpy.dataset.Episode)): list of episodes to
+        episodes (list(tjuOfflineRL.dataset.Episode)): list of episodes to
             initialize buffer.
 
     """

@@ -1,4 +1,4 @@
-# Offline-RL-Repo
+# tjuOfflineRL
 
 Based on d3rlpy, we have implemented some newly released offline RL algorithms that were not originally included.
 

@@ -87,7 +87,7 @@ class AlgoBase(LearnableBase):
             # save as ONNX
             algo.save_policy('policy.onnx')
 
-        The artifacts saved with this method will work without d3rlpy.
+        The artifacts saved with this method will work without tjuOfflineRL.
         This method is especially useful to deploy the learned policy to
         production environments or embedding systems.
 
@@ -200,7 +200,7 @@ class AlgoBase(LearnableBase):
         save_interval: int = 1,
         experiment_name: Optional[str] = None,
         with_timestamp: bool = True,
-        logdir: str = "d3rlpy_logs",
+        logdir: str = "tjuOfflineRL_logs",
         verbose: bool = True,
         show_progress: bool = True,
         tensorboard_dir: Optional[str] = None,
@@ -327,11 +327,11 @@ class AlgoBase(LearnableBase):
         .. code-block:: python
 
             # pretrain with static dataset
-            cql = d3rlpy.algos.CQL()
+            cql = tjuOfflineRL.algos.CQL()
             cql.fit(dataset, n_steps=100000)
 
             # transfer to online algorithm
-            sac = d3rlpy.algos.SAC()
+            sac = tjuOfflineRL.algos.SAC()
             sac.create_impl(cql.observation_shape, cql.action_size)
             sac.copy_policy_from(cql)
 
@@ -349,11 +349,11 @@ class AlgoBase(LearnableBase):
         .. code-block:: python
 
             # pretrain with static dataset
-            cql = d3rlpy.algos.CQL()
+            cql = tjuOfflineRL.algos.CQL()
             cql.fit(dataset, n_steps=100000)
 
             # transfer to online algorithm
-            sac = d3rlpy.algos.SAC()
+            sac = tjuOfflineRL.algos.SAC()
             sac.create_impl(cql.observation_shape, cql.action_size)
             sac.copy_policy_optim_from(cql)
 
@@ -371,11 +371,11 @@ class AlgoBase(LearnableBase):
         .. code-block:: python
 
             # pretrain with static dataset
-            cql = d3rlpy.algos.CQL()
+            cql = tjuOfflineRL.algos.CQL()
             cql.fit(dataset, n_steps=100000)
 
             # transfer to online algorithmn
-            sac = d3rlpy.algos.SAC()
+            sac = tjuOfflineRL.algos.SAC()
             sac.create_impl(cql.observation_shape, cql.action_size)
             sac.copy_q_function_from(cql)
 
@@ -393,11 +393,11 @@ class AlgoBase(LearnableBase):
         .. code-block:: python
 
             # pretrain with static dataset
-            cql = d3rlpy.algos.CQL()
+            cql = tjuOfflineRL.algos.CQL()
             cql.fit(dataset, n_steps=100000)
 
             # transfer to online algorithm
-            sac = d3rlpy.algos.SAC()
+            sac = tjuOfflineRL.algos.SAC()
             sac.create_impl(cql.observation_shape, cql.action_size)
             sac.copy_policy_optim_from(cql)
 

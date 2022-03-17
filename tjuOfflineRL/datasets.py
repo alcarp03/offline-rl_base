@@ -12,7 +12,7 @@ import numpy as np
 from .dataset import Episode, MDPDataset, Transition
 from .envs import ChannelFirst
 
-DATA_DIRECTORY = "d3rlpy_data"
+DATA_DIRECTORY = "tjuOfflineRL_data"
 DROPBOX_URL = "https://www.dropbox.com/s"
 CARTPOLE_URL = f"{DROPBOX_URL}/uep0lzlhxpi79pd/cartpole_v1.1.0.h5?dl=1"
 CARTPOLE_RANDOM_URL = f"{DROPBOX_URL}/4lgai7tgj84cbov/cartpole_random_v1.1.0.h5?dl=1"  # pylint: disable=line-too-long
@@ -23,7 +23,7 @@ PENDULUM_RANDOM_URL = f"{DROPBOX_URL}/hhbq9i6ako24kzz/pendulum_random_v1.1.0.h5?
 def get_cartpole(dataset_type: str = "replay") -> Tuple[MDPDataset, gym.Env]:
     """Returns cartpole dataset and environment.
 
-    The dataset is automatically downloaded to ``d3rlpy_data/cartpole.h5`` if
+    The dataset is automatically downloaded to ``tjuOfflineRL_data/cartpole.h5`` if
     it does not exist.
 
     Args:
@@ -31,7 +31,7 @@ def get_cartpole(dataset_type: str = "replay") -> Tuple[MDPDataset, gym.Env]:
             ``['replay', 'random']``.
 
     Returns:
-        tuple of :class:`d3rlpy.dataset.MDPDataset` and gym environment.
+        tuple of :class:`tjuOfflineRL.dataset.MDPDataset` and gym environment.
 
     """
     if dataset_type == "replay":
@@ -63,7 +63,7 @@ def get_cartpole(dataset_type: str = "replay") -> Tuple[MDPDataset, gym.Env]:
 def get_pendulum(dataset_type: str = "replay") -> Tuple[MDPDataset, gym.Env]:
     """Returns pendulum dataset and environment.
 
-    The dataset is automatically downloaded to ``d3rlpy_data/pendulum.h5`` if
+    The dataset is automatically downloaded to ``tjuOfflineRL_data/pendulum.h5`` if
     it does not exist.
 
     Args:
@@ -71,7 +71,7 @@ def get_pendulum(dataset_type: str = "replay") -> Tuple[MDPDataset, gym.Env]:
             ``['replay', 'random']``.
 
     Returns:
-        tuple of :class:`d3rlpy.dataset.MDPDataset` and gym environment.
+        tuple of :class:`tjuOfflineRL.dataset.MDPDataset` and gym environment.
 
     """
     if dataset_type == "replay":
@@ -107,7 +107,7 @@ def get_atari(env_name: str) -> Tuple[MDPDataset, gym.Env]:
 
     .. code-block:: python
 
-        from d3rlpy.datasets import get_atari
+        from tjuOfflineRL.datasets import get_atari
 
         dataset, env = get_atari('breakout-mixed-v0')
 
@@ -118,7 +118,7 @@ def get_atari(env_name: str) -> Tuple[MDPDataset, gym.Env]:
         env_name: environment id of d4rl-atari dataset.
 
     Returns:
-        tuple of :class:`d3rlpy.dataset.MDPDataset` and gym environment.
+        tuple of :class:`tjuOfflineRL.dataset.MDPDataset` and gym environment.
 
     """
     try:
@@ -146,7 +146,7 @@ def get_atari_transitions(
 
     .. code-block:: python
 
-        from d3rlpy.datasets import get_atari_transitions
+        from tjuOfflineRL.datasets import get_atari_transitions
 
         # get 1% of transitions from all epochs (1M x 50 epoch x 1% = 0.5M)
         dataset, env = get_atari_transitions('breakout', fraction=0.01)
@@ -160,7 +160,7 @@ def get_atari_transitions(
         index: index to specify which trial to load.
 
     Returns:
-        tuple of a list of :class:`d3rlpy.dataset.Transition` and gym
+        tuple of a list of :class:`tjuOfflineRL.dataset.Transition` and gym
         environment.
 
     """
@@ -217,7 +217,7 @@ def get_d4rl(env_name: str) -> Tuple[MDPDataset, gym.Env]:
 
     .. code-block:: python
 
-        from d3rlpy.datasets import get_d4rl
+        from tjuOfflineRL.datasets import get_d4rl
 
         dataset, env = get_d4rl('hopper-medium-v0')
 
@@ -230,7 +230,7 @@ def get_d4rl(env_name: str) -> Tuple[MDPDataset, gym.Env]:
         env_name: environment id of d4rl dataset.
 
     Returns:
-        tuple of :class:`d3rlpy.dataset.MDPDataset` and gym environment.
+        tuple of :class:`tjuOfflineRL.dataset.MDPDataset` and gym environment.
 
     """
     try:
@@ -343,25 +343,25 @@ def get_dataset(env_name: str) -> Tuple[MDPDataset, gym.Env]:
 
     .. code-block:: python
 
-       import d3rlpy
+       import tjuOfflineRL
 
        # cartpole dataset
-       dataset, env = d3rlpy.datasets.get_dataset('cartpole')
+       dataset, env = tjuOfflineRL.datasets.get_dataset('cartpole')
 
        # pendulum dataset
-       dataset, env = d3rlpy.datasets.get_dataset('pendulum')
+       dataset, env = tjuOfflineRL.datasets.get_dataset('pendulum')
 
        # d4rl-atari dataset
-       dataset, env = d3rlpy.datasets.get_dataset('breakout-mixed-v0')
+       dataset, env = tjuOfflineRL.datasets.get_dataset('breakout-mixed-v0')
 
        # d4rl dataset
-       dataset, env = d3rlpy.datasets.get_dataset('hopper-medium-v0')
+       dataset, env = tjuOfflineRL.datasets.get_dataset('hopper-medium-v0')
 
     Args:
         env_name: environment id of the dataset.
 
     Returns:
-        tuple of :class:`d3rlpy.dataset.MDPDataset` and gym environment.
+        tuple of :class:`tjuOfflineRL.dataset.MDPDataset` and gym environment.
 
     """
     if env_name == "cartpole-replay":

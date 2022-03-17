@@ -18,7 +18,7 @@ class RandomPolicy(AlgoBase):
             ``['uniform', 'normal']``.
         normal_std (float): standard deviation of the normal distribution. This
             is only used when ``distribution='normal'``.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action preprocessor. The available options are ``['min_max']``.
 
     """

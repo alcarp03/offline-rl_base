@@ -40,7 +40,7 @@ from .dataset import Episode, MDPDataset, Transition, TransitionMiniBatch
 from .decorators import pretty_repr
 from .gpu import Device
 from .iterators import RandomIterator, RoundIterator, TransitionIterator
-from .logger import LOG, D3RLPyLogger
+from .logger import LOG, TJUOfflineRLLogger
 from .models.encoders import EncoderFactory, create_encoder_factory
 from .models.optimizers import OptimizerFactory
 from .models.q_functions import QFunctionFactory, create_q_func_factory
@@ -143,7 +143,7 @@ class LearnableBase:
     _impl: Optional[ImplBase]
     _eval_results: DefaultDict[str, List[float]]
     _loss_history: DefaultDict[str, List[float]]
-    _active_logger: Optional[D3RLPyLogger]
+    _active_logger: Optional[TJUOfflineRLLogger]
     _grad_step: int
 
     def __init__(
@@ -194,13 +194,13 @@ class LearnableBase:
 
         .. code-block:: python
 
-            from d3rlpy.algos import Algo
+            from tjuOfflineRL.algos import Algo
 
             # create algorithm with saved configuration
-            algo = Algo.from_json('d3rlpy_logs/<path-to-json>/params.json')
+            algo = Algo.from_json('tjuOfflineRL_logs/<path-to-json>/params.json')
 
             # ready to load
-            algo.load_model('d3rlpy_logs/<path-to-model>/model_100.pt')
+            algo.load_model('tjuOfflineRL_logs/<path-to-model>/model_100.pt')
 
             # ready to predict
             algo.predict(...)
@@ -355,7 +355,7 @@ class LearnableBase:
         save_metrics: bool = True,
         experiment_name: Optional[str] = None,
         with_timestamp: bool = True,
-        logdir: str = "d3rlpy_logs",
+        logdir: str = "tjuOfflineRL_logs",
         verbose: bool = True,
         show_progress: bool = True,
         tensorboard_dir: Optional[str] = None,
@@ -434,7 +434,7 @@ class LearnableBase:
         save_metrics: bool = True,
         experiment_name: Optional[str] = None,
         with_timestamp: bool = True,
-        logdir: str = "d3rlpy_logs",
+        logdir: str = "tjuOfflineRL_logs",
         verbose: bool = True,
         show_progress: bool = True,
         tensorboard_dir: Optional[str] = None,
@@ -775,11 +775,11 @@ class LearnableBase:
         logdir: str,
         verbose: bool,
         tensorboard_dir: Optional[str],
-    ) -> D3RLPyLogger:
+    ) -> TJUOfflineRLLogger:
         if experiment_name is None:
             experiment_name = self.__class__.__name__
 
-        logger = D3RLPyLogger(
+        logger = TJUOfflineRLLogger(
             experiment_name,
             save_metrics=save_metrics,
             root_dir=logdir,
@@ -794,7 +794,7 @@ class LearnableBase:
         self,
         episodes: List[Episode],
         scorers: Dict[str, Callable[[Any, List[Episode]], float]],
-        logger: D3RLPyLogger,
+        logger: TJUOfflineRLLogger,
     ) -> None:
         for name, scorer in scorers.items():
             # evaluation with test data
@@ -807,7 +807,7 @@ class LearnableBase:
             if test_score is not None:
                 self._eval_results[name].append(test_score)
 
-    def save_params(self, logger: D3RLPyLogger) -> None:
+    def save_params(self, logger: TJUOfflineRLLogger) -> None:
         """Saves configurations as params.json.
 
         Args:
@@ -984,8 +984,8 @@ class LearnableBase:
         return None
 
     @property
-    def active_logger(self) -> Optional[D3RLPyLogger]:
-        """Active D3RLPyLogger object.
+    def active_logger(self) -> Optional[TJUOfflineRLLogger]:
+        """Active TJUOfflineRLLogger object.
 
         This will be only available during training.
 
@@ -995,8 +995,8 @@ class LearnableBase:
         """
         return self._active_logger
 
-    def set_active_logger(self, logger: D3RLPyLogger) -> None:
-        """Set active D3RLPyLogger object
+    def set_active_logger(self, logger: TJUOfflineRLLogger) -> None:
+        """Set active TJUOfflineRLLogger object
 
         Args:
             logger: logger object.

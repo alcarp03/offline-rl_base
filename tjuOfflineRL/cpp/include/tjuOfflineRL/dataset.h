@@ -1,7 +1,7 @@
 #include <vector>
 #include <memory>
 
-namespace d3rlpy {
+namespace tjuOfflineRL {
 
   using namespace std;
 

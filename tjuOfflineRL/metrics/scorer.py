@@ -296,9 +296,9 @@ def soft_opc_scorer(
 
     .. code-block:: python
 
-        from d3rlpy.datasets import get_cartpole
-        from d3rlpy.algos import DQN
-        from d3rlpy.metrics.scorer import soft_opc_scorer
+        from tjuOfflineRL.datasets import get_cartpole
+        from tjuOfflineRL.algos import DQN
+        from tjuOfflineRL.metrics.scorer import soft_opc_scorer
         from sklearn.model_selection import train_test_split
 
         dataset, _ = get_cartpole()
@@ -416,8 +416,8 @@ def evaluate_on_environment(
 
         import gym
 
-        from d3rlpy.algos import DQN
-        from d3rlpy.metrics.scorer import evaluate_on_environment
+        from tjuOfflineRL.algos import DQN
+        from tjuOfflineRL.metrics.scorer import evaluate_on_environment
 
 
         env = gym.make('CartPole-v0')

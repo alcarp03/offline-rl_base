@@ -17,7 +17,7 @@ from gym.wrappers import TransformReward
 class ChannelFirst(gym.Wrapper):  # type: ignore
     """Channel-first wrapper for image observation environments.
 
-    d3rlpy expects channel-first images since it's built with PyTorch.
+    tjuOfflineRL expects channel-first images since it's built with PyTorch.
     You can transform the observation shape with ``ChannelFirst`` wrapper.
 
     Args:

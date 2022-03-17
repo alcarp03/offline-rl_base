@@ -45,9 +45,9 @@ class ProbabilisticEnsembleDynamics(DynamicsBase):
 
     Args:
         learning_rate (float): learning rate for dynamics model.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -55,15 +55,15 @@ class ProbabilisticEnsembleDynamics(DynamicsBase):
         variance_type (str): variance calculation type. The available options
             are ``['max', 'data']``.
         discrete_action (bool): flag to take discrete actions.
-        scaler (d3rlpy.preprocessing.scalers.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.scalers.Scaler or str): preprocessor.
             The available options are ``['pixel', 'min_max', 'standard']``.
-        action_scaler (d3rlpy.preprocessing.Actionscalers or str):
+        action_scaler (tjuOfflineRL.preprocessing.Actionscalers or str):
             action preprocessor. The available options are ``['min_max']``.
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        use_gpu (bool or d3rlpy.gpu.Device): flag to use GPU or device.
-        impl (d3rlpy.dynamics.torch.ProbabilisticEnsembleDynamicsImpl):
+        use_gpu (bool or tjuOfflineRL.gpu.Device): flag to use GPU or device.
+        impl (tjuOfflineRL.dynamics.torch.ProbabilisticEnsembleDynamicsImpl):
             dynamics implementation.
 
     """

@@ -90,21 +90,21 @@ class BC(_BCBase):
 
     Args:
         learning_rate (float): learing rate.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
         policy_type (str): the policy type. The available options are
             ``['deterministic', 'stochastic']``.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action scaler. The available options are ``['min_max']``.
-        impl (d3rlpy.algos.torch.bc_impl.BCImpl):
+        impl (tjuOfflineRL.algos.torch.bc_impl.BCImpl):
             implemenation of the algorithm.
 
     """
@@ -179,18 +179,18 @@ class DiscreteBC(_BCBase):
 
     Args:
         learning_rate (float): learing rate.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
         beta (float): reguralization factor.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`
-        impl (d3rlpy.algos.torch.bc_impl.DiscreteBCImpl):
+        impl (tjuOfflineRL.algos.torch.bc_impl.DiscreteBCImpl):
             implemenation of the algorithm.
 
     """

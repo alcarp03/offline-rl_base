@@ -23,8 +23,8 @@ def compare_continuous_action_diff(
 
     .. code-block:: python
 
-        from d3rlpy.algos import CQL
-        from d3rlpy.metrics.comparer import compare_continuous_action_diff
+        from tjuOfflineRL.algos import CQL
+        from tjuOfflineRL.metrics.comparer import compare_continuous_action_diff
 
         cql1 = CQL()
         cql2 = CQL()
@@ -74,8 +74,8 @@ def compare_discrete_action_match(
 
     .. code-block:: python
 
-        from d3rlpy.algos import DQN
-        from d3rlpy.metrics.comparer import compare_continuous_action_diff
+        from tjuOfflineRL.algos import DQN
+        from tjuOfflineRL.metrics.comparer import compare_continuous_action_diff
 
         dqn1 = DQN()
         dqn2 = DQN()

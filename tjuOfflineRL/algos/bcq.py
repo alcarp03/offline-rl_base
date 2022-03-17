@@ -102,19 +102,19 @@ class BCQ(AlgoBase):
         actor_learning_rate (float): learning rate for policy function.
         critic_learning_rate (float): learning rate for Q functions.
         imitator_learning_rate (float): learning rate for Conditional VAE.
-        actor_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        actor_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the actor.
-        critic_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        critic_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the critic.
-        imitator_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        imitator_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the conditional VAE.
-        actor_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        actor_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the actor.
-        critic_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        critic_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the critic.
-        imitator_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        imitator_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the conditional VAE.
-        q_func_factory (d3rlpy.models.q_functions.QFunctionFactory or str):
+        q_func_factory (tjuOfflineRL.models.q_functions.QFunctionFactory or str):
             Q function factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -131,16 +131,16 @@ class BCQ(AlgoBase):
         rl_start_step (int): step to start to update policy function and Q
             functions. If this is large, RL training would be more stabilized.
         beta (float): KL reguralization term for Conditional VAE.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action preprocessor. The available options are ``['min_max']``.
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.algos.torch.bcq_impl.BCQImpl): algorithm implementation.
+        impl (tjuOfflineRL.algos.torch.bcq_impl.BCQImpl): algorithm implementation.
 
     """
 
@@ -327,11 +327,11 @@ class DiscreteBCQ(AlgoBase):
 
     Args:
         learning_rate (float): learning rate.
-        optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory.
-        encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory.
-        q_func_factory (d3rlpy.models.q_functions.QFunctionFactory or str):
+        q_func_factory (tjuOfflineRL.models.q_functions.QFunctionFactory or str):
             Q function factory.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -342,14 +342,14 @@ class DiscreteBCQ(AlgoBase):
             :math:`\tau`.
         beta (float): reguralization term for imitation function.
         target_update_interval (int): interval to update the target network.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.algos.torch.bcq_impl.DiscreteBCQImpl):
+        impl (tjuOfflineRL.algos.torch.bcq_impl.DiscreteBCQImpl):
             algorithm implementation.
 
     """

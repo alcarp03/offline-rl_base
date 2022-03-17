@@ -58,15 +58,15 @@ class IQL(AlgoBase):
     Args:
         actor_learning_rate (float): learning rate for policy function.
         critic_learning_rate (float): learning rate for Q functions.
-        actor_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        actor_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the actor.
-        critic_optim_factory (d3rlpy.models.optimizers.OptimizerFactory):
+        critic_optim_factory (tjuOfflineRL.models.optimizers.OptimizerFactory):
             optimizer factory for the critic.
-        actor_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        actor_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the actor.
-        critic_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        critic_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the critic.
-        value_encoder_factory (d3rlpy.models.encoders.EncoderFactory or str):
+        value_encoder_factory (tjuOfflineRL.models.encoders.EncoderFactory or str):
             encoder factory for the value function.
         batch_size (int): mini-batch size.
         n_frames (int): the number of frames to stack for image observation.
@@ -78,16 +78,16 @@ class IQL(AlgoBase):
         weight_temp (float): inverse temperature value represented as
             :math:`\beta`.
         max_weight (float): the maximum advantage weight value to clip.
-        use_gpu (bool, int or d3rlpy.gpu.Device):
+        use_gpu (bool, int or tjuOfflineRL.gpu.Device):
             flag to use GPU, device ID or device.
-        scaler (d3rlpy.preprocessing.Scaler or str): preprocessor.
+        scaler (tjuOfflineRL.preprocessing.Scaler or str): preprocessor.
             The available options are `['pixel', 'min_max', 'standard']`.
-        action_scaler (d3rlpy.preprocessing.ActionScaler or str):
+        action_scaler (tjuOfflineRL.preprocessing.ActionScaler or str):
             action preprocessor. The available options are ``['min_max']``.
-        reward_scaler (d3rlpy.preprocessing.RewardScaler or str):
+        reward_scaler (tjuOfflineRL.preprocessing.RewardScaler or str):
             reward preprocessor. The available options are
             ``['clip', 'min_max', 'standard']``.
-        impl (d3rlpy.algos.torch.iql_impl.IQLImpl): algorithm implementation.
+        impl (tjuOfflineRL.algos.torch.iql_impl.IQLImpl): algorithm implementation.
 
     """
 

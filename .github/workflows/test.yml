@@ -43,7 +43,7 @@ jobs:
       - name: Unit tests
         run: |
           mkdir -p test_data
-          pytest --cov-report=xml --cov=d3rlpy --cov-config=.coveragerc tests -p no:warnings -v
+          pytest --cov-report=xml --cov=tjuOfflineRL --cov-config=.coveragerc tests -p no:warnings -v
       - name: Upload coverage
         if: ${{ matrix.os == 'ubuntu-20.04' }}
         env:

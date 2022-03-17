@@ -100,7 +100,7 @@ class MultiplyRewardScaler(RewardScaler):
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import MultiplyRewardScaler
+        from tjuOfflineRL.preprocessing import MultiplyRewardScaler
 
         # multiply rewards by 10
         reward_scaler = MultiplyRewardScaler(10.0)
@@ -140,7 +140,7 @@ class ClipRewardScaler(RewardScaler):
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import ClipRewardScaler
+        from tjuOfflineRL.preprocessing import ClipRewardScaler
 
         # clip rewards within [-1.0, 1.0]
         reward_scaler = ClipRewardScaler(low=-1.0, high=1.0)
@@ -199,16 +199,16 @@ class MinMaxRewardScaler(RewardScaler):
 
     .. code-block:: python
 
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.algos import CQL
 
         cql = CQL(reward_scaler="min_max")
 
-    You can also initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can also initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import MinMaxRewardScaler
+        from tjuOfflineRL.preprocessing import MinMaxRewardScaler
 
         # initialize with dataset
         scaler = MinMaxRewardScaler(dataset)
@@ -219,7 +219,7 @@ class MinMaxRewardScaler(RewardScaler):
         cql = CQL(scaler=scaler)
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         minimum (float): minimum value.
         maximum (float): maximum value.
         multiplier (float): constant multiplication value.
@@ -290,16 +290,16 @@ class StandardRewardScaler(RewardScaler):
 
     .. code-block:: python
 
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.algos import CQL
 
         cql = CQL(reward_scaler="standard")
 
-    You can also initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can also initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import StandardRewardScaler
+        from tjuOfflineRL.preprocessing import StandardRewardScaler
 
         # initialize with dataset
         scaler = StandardRewardScaler(dataset)
@@ -310,7 +310,7 @@ class StandardRewardScaler(RewardScaler):
         cql = CQL(scaler=scaler)
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         mean (float): mean value.
         std (float): standard deviation value.
         eps (float): constant value to avoid zero-division.
@@ -385,16 +385,16 @@ class ReturnBasedRewardScaler(RewardScaler):
 
     .. code-block:: python
 
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.algos import CQL
 
         cql = CQL(reward_scaler="return")
 
-    You can also initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can also initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import ReturnBasedRewardScaler
+        from tjuOfflineRL.preprocessing import ReturnBasedRewardScaler
 
         # initialize with dataset
         scaler = ReturnBasedRewardScaler(dataset)
@@ -409,7 +409,7 @@ class ReturnBasedRewardScaler(RewardScaler):
           Q-Learning. <https://arxiv.org/abs/2110.06169>`_
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         return_max (float): the maximum return value.
         return_min (float): standard deviation value.
         multiplier (float): constant multiplication value

@@ -6,7 +6,7 @@ from tqdm.auto import trange
 from typing_extensions import Protocol
 
 from ..dataset import TransitionMiniBatch
-from ..logger import LOG, D3RLPyLogger
+from ..logger import LOG, tjuOfflineRLLogger
 from ..metrics.scorer import evaluate_on_environment
 from ..preprocessing import ActionScaler, Scaler
 from ..preprocessing.stack import StackedObservation
@@ -21,7 +21,7 @@ class AlgoProtocol(Protocol):
     def build_with_env(self, env: gym.Env) -> None:
         ...
 
-    def save_params(self, logger: D3RLPyLogger) -> None:
+    def save_params(self, logger: tjuOfflineRLLogger) -> None:
         ...
 
     def predict(self, x: Union[np.ndarray, List[Any]]) -> np.ndarray:
@@ -33,7 +33,7 @@ class AlgoProtocol(Protocol):
     def save_model(self, fname: str) -> None:
         ...
 
-    def set_active_logger(self, logger: D3RLPyLogger) -> None:
+    def set_active_logger(self, logger: tjuOfflineRLLogger) -> None:
         ...
 
     @property
@@ -112,7 +112,7 @@ def train_single_env(
     save_interval: int = 1,
     experiment_name: Optional[str] = None,
     with_timestamp: bool = True,
-    logdir: str = "d3rlpy_logs",
+    logdir: str = "tjuOfflineRL_logs",
     verbose: bool = True,
     show_progress: bool = True,
     tensorboard_dir: Optional[str] = None,
@@ -157,7 +157,7 @@ def train_single_env(
     if experiment_name is None:
         experiment_name = algo.__class__.__name__ + "_online"
 
-    logger = D3RLPyLogger(
+    logger = tjuOfflineRLLogger(
         experiment_name,
         save_metrics=save_metrics,
         root_dir=logdir,

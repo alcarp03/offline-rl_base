@@ -86,8 +86,8 @@ class PixelScaler(Scaler):
 
     .. code-block:: python
 
-        from d3rlpy.dataset import MDPDataset
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.dataset import MDPDataset
+        from tjuOfflineRL.algos import CQL
 
         dataset = MDPDataset(observations, actions, rewards, terminals)
 
@@ -125,8 +125,8 @@ class MinMaxScaler(Scaler):
 
     .. code-block:: python
 
-        from d3rlpy.dataset import MDPDataset
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.dataset import MDPDataset
+        from tjuOfflineRL.algos import CQL
 
         dataset = MDPDataset(observations, actions, rewards, terminals)
 
@@ -139,12 +139,12 @@ class MinMaxScaler(Scaler):
             transitions += episode.transitions
         cql.fit(transitions)
 
-    You can also initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can also initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import MinMaxScaler
+        from tjuOfflineRL.preprocessing import MinMaxScaler
 
         # initialize with dataset
         scaler = MinMaxScaler(dataset)
@@ -157,7 +157,7 @@ class MinMaxScaler(Scaler):
         cql = CQL(scaler=scaler)
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         min (numpy.ndarray): minimum values at each entry.
         max (numpy.ndarray): maximum values at each entry.
 
@@ -254,8 +254,8 @@ class StandardScaler(Scaler):
 
     .. code-block:: python
 
-        from d3rlpy.dataset import MDPDataset
-        from d3rlpy.algos import CQL
+        from tjuOfflineRL.dataset import MDPDataset
+        from tjuOfflineRL.algos import CQL
 
         dataset = MDPDataset(observations, actions, rewards, terminals)
 
@@ -268,12 +268,12 @@ class StandardScaler(Scaler):
             transitions += episode.transitions
         cql.fit(transitions)
 
-    You can initialize with :class:`d3rlpy.dataset.MDPDataset` object or
+    You can initialize with :class:`tjuOfflineRL.dataset.MDPDataset` object or
     manually.
 
     .. code-block:: python
 
-        from d3rlpy.preprocessing import StandardScaler
+        from tjuOfflineRL.preprocessing import StandardScaler
 
         # initialize with dataset
         scaler = StandardScaler(dataset)
@@ -286,7 +286,7 @@ class StandardScaler(Scaler):
         cql = CQL(scaler=scaler)
 
     Args:
-        dataset (d3rlpy.dataset.MDPDataset): dataset object.
+        dataset (tjuOfflineRL.dataset.MDPDataset): dataset object.
         mean (numpy.ndarray): mean values at each entry.
         std (numpy.ndarray): standard deviation at each entry.
         eps (float): small constant value to avoid zero-division.

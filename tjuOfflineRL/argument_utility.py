@@ -21,7 +21,7 @@ def check_encoder(value: EncoderArg) -> EncoderFactory:
     """Checks value and returns EncoderFactory object.
 
     Returns:
-        d3rlpy.encoders.EncoderFactory: encoder factory object.
+        tjuOfflineRL.encoders.EncoderFactory: encoder factory object.
 
     """
     if isinstance(value, EncoderFactory):
@@ -35,7 +35,7 @@ def check_q_func(value: QFuncArg) -> QFunctionFactory:
     """Checks value and returns QFunctionFactory object.
 
     Returns:
-        d3rlpy.q_functions.QFunctionFactory: Q function factory object.
+        tjuOfflineRL.q_functions.QFunctionFactory: Q function factory object.
 
     """
     if isinstance(value, QFunctionFactory):
@@ -97,7 +97,7 @@ def check_use_gpu(value: UseGPUArg) -> Optional[Device]:
     """Checks value and returns Device object.
 
     Returns:
-        d3rlpy.gpu.Device: device object.
+        tjuOfflineRL.gpu.Device: device object.
 
     """
     # isinstance cannot tell difference between bool and int

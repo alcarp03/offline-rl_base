@@ -106,7 +106,7 @@ def create_algo(name: str, discrete: bool, **params: Any) -> AlgoBase:
         params (any): arguments for algorithm.
 
     Returns:
-        d3rlpy.algos.base.AlgoBase: algorithm.
+        tjuOfflineRL.algos.base.AlgoBase: algorithm.
 
     """
     return get_algo(name, discrete)(**params)
