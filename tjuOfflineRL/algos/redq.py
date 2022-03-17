@@ -115,7 +115,7 @@ class REDQ(AlgoBase):
         )
         self._impl.build()
 
-    def _update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
+    def update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
         assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
 
         metrics = {}
@@ -233,7 +233,7 @@ class DiscreteSAC(AlgoBase):
         )
         self._impl.build()
 
-    def _update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
+    def update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
         assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
 
         metrics = {}
