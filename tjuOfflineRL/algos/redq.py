@@ -12,7 +12,7 @@ from ..argument_utility import (
     check_use_gpu,
 )
 from ..constants import IMPL_NOT_INITIALIZED_ERROR, ActionSpace
-from tjuOfflineRL.dataset import TransitionMiniBatch
+from ..dataset import TransitionMiniBatch
 from ..gpu import Device
 from ..models.encoders import EncoderFactory
 from ..models.optimizers import AdamFactory, OptimizerFactory
@@ -34,7 +34,6 @@ class REDQ(AlgoBase):
     _q_func_factory: QFunctionFactory
     _tau: float
     _n_critics: int
-    _target_reduction_type: str
     _initial_temperature: float
     _use_gpu: Optional[Device]
     _impl: Optional[REDQImpl]
@@ -57,7 +56,6 @@ class REDQ(AlgoBase):
         gamma: float = 0.99,
         tau: float = 0.005,
         n_critics: int = 2,
-        target_reduction_type: str = "min",
         initial_temperature: float = 1.0,
         use_gpu: UseGPUArg = False,
         scaler: ScalerArg = None,
@@ -87,7 +85,6 @@ class REDQ(AlgoBase):
         self._q_func_factory = check_q_func(q_func_factory)
         self._tau = tau
         self._n_critics = n_critics
-        self._target_reduction_type = target_reduction_type
         self._initial_temperature = initial_temperature
         self._use_gpu = check_use_gpu(use_gpu)
         self._impl = impl
@@ -110,7 +107,6 @@ class REDQ(AlgoBase):
             gamma=self._gamma,
             tau=self._tau,
             n_critics=self._n_critics,
-            target_reduction_type=self._target_reduction_type,
             initial_temperature=self._initial_temperature,
             use_gpu=self._use_gpu,
             scaler=self._scaler,
@@ -120,8 +116,6 @@ class REDQ(AlgoBase):
         self._impl.build()
 
     def _update_redq(self, batch: TransitionMiniBatch, i_update: int) -> Dict[str, float]:
-        # this function is called after each datapoint collected.
-        # when we only have very limited data, we don't make updates
         assert self._impl is not None, IMPL_NOT_INITIALIZED_ERROR
 
         metrics = {}
@@ -131,7 +125,7 @@ class REDQ(AlgoBase):
 
         self._impl.update_critic_target()
 
-        if (i_update + 1) % 20 == 0:  # 延迟更新temp和actor
+        if (i_update + 1) % 20 == 0:
             # lagrangian parameter update for SAC temperature
             if self._temp_learning_rate > 0:
                 temp_loss, temp = self._impl.update_temp(batch)
@@ -148,7 +142,7 @@ class REDQ(AlgoBase):
         return ActionSpace.CONTINUOUS
 
 
-class DiscreteREDQ(AlgoBase):
+class DiscreteSAC(AlgoBase):
 
     _actor_learning_rate: float
     _critic_learning_rate: float
@@ -247,7 +241,9 @@ class DiscreteREDQ(AlgoBase):
         critic_loss = self._impl.update_critic(batch)
         metrics.update({"critic_loss": critic_loss})
 
-        if (i_update + 1) % 20 == 0:  # 延迟更新temp和actor
+        self._impl.update_critic_target()
+
+        if (i_update + 1) % 20 == 0:
             # lagrangian parameter update for SAC temperature
             if self._temp_learning_rate > 0:
                 temp_loss, temp = self._impl.update_temp(batch)
@@ -256,8 +252,7 @@ class DiscreteREDQ(AlgoBase):
             actor_loss = self._impl.update_actor(batch)
             metrics.update({"actor_loss": actor_loss})
 
-            if self._grad_step % self._target_update_interval == 0:
-                self._impl.update_target()
+            self._impl.update_actor_target()
 
         return metrics
 

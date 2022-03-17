@@ -57,7 +57,6 @@ class REDQImpl(DDPGBaseImpl):
         gamma: float,
         tau: float,
         n_critics: int,
-        target_reduction_type: str,
         initial_temperature: float,
         use_gpu: Optional[Device],
         scaler: Optional[Scaler],
@@ -77,7 +76,6 @@ class REDQImpl(DDPGBaseImpl):
             gamma=gamma,
             tau=tau,
             n_critics=n_critics,
-            target_reduction_type=target_reduction_type,
             use_gpu=use_gpu,
             scaler=scaler,
             action_scaler=action_scaler,
@@ -152,19 +150,16 @@ class REDQImpl(DDPGBaseImpl):
         assert self._log_temp is not None
         assert self._targ_q_func is not None
         with torch.no_grad():
-            action, log_prob = self._policy.sample_with_log_prob(  # 根据s'得到a'和log π(a'|s')
+            action, log_prob = self._policy.sample_with_log_prob(
                 batch.next_observations
             )
             entropy = self._log_temp().exp() * log_prob
-            target = self._targ_q_func.compute_target_redq(  # 根据s'和a'得到Q(s',a') 并根据type处理
+            target = self._targ_q_func.compute_target_redq(
                 batch.next_observations,
                 action,
-                reduction=self._target_reduction_type,
+                reduction="min",
             )
-            if self._target_reduction_type == "none":
-                return target - entropy.view(1, -1, 1)
-            else:
-                return target - entropy
+            return target - entropy
 
 
 class DiscreteREDQImpl(DiscreteQFunctionMixin, TorchImplBase):
@@ -334,13 +329,12 @@ class DiscreteREDQImpl(DiscreteQFunctionMixin, TorchImplBase):
     ) -> torch.Tensor:
         assert self._q_func is not None
         return self._q_func.compute_error(
-            obs_t=batch.observations,
-            act_t=batch.actions.long(),
-            rew_tp1=batch.next_rewards,
-            q_tp1=q_tpn,
-            ter_tp1=batch.terminals,
-            gamma=self._gamma ** batch.n_steps,
-            masks=batch.masks,
+            observations=batch.observations,
+            actions=batch.actions.long(),
+            rewards=batch.rewards,
+            target=q_tpn,
+            terminals=batch.terminals,
+            gamma=self._gamma**batch.n_steps,
         )
 
     @train_api
