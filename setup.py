@@ -6,16 +6,16 @@ os.environ['CFLAGS'] = '-std=c++11'
 
 # get __version__ variable
 here = os.path.abspath(os.path.dirname(__file__))
-exec(open(os.path.join(here, 'd3rlpy', '_version.py')).read())
+exec(open(os.path.join(here, 'tjuOfflineRL', '_version.py')).read())
 
 if __name__ == "__main__":
     from numpy import get_include
     from Cython.Build import cythonize
 
     # setup Cython build
-    ext = Extension('d3rlpy.dataset',
-                    sources=['d3rlpy/dataset.pyx'],
-                    include_dirs=[get_include(), 'd3rlpy/cpp/include'],
+    ext = Extension('tjuOfflineRL.dataset',
+                    sources=['tjuOfflineRL/dataset.pyx'],
+                    include_dirs=[get_include(), 'tjuOfflineRL/cpp/include'],
                     language='c++',
                     extra_compile_args=["-std=c++11", "-O3", "-ffast-math"],
                     extra_link_args=["-std=c++11"])
@@ -27,14 +27,14 @@ if __name__ == "__main__":
                             })
 
     # main setup
-    setup(name="d3rlpy",
+    setup(name="tjuOfflineRL",
           version=__version__,
           description="An offline deep reinforcement learning library",
           long_description=open("README.md").read(),
           long_description_content_type="text/markdown",
-          url="https://github.com/takuseno/d3rlpy",
-          author="Takuma Seno",
-          author_email="takuma.seno@gmail.com",
+          url="https://github.com/TJU-DRL-LAB/Offline-RL.git",
+          author="TJU-DRL-LAB",
+          author_email="jianye.hao@tju.edu.cn",
           license="MIT License",
           classifiers=["Development Status :: 5 - Stable",
                        "Intended Audience :: Developers",
@@ -63,12 +63,12 @@ if __name__ == "__main__":
                             "structlog",
                             "colorama"],
           packages=find_packages(exclude=["tests*"]),
-          python_requires=">=3.6.0",
+          python_requires=">=3.7.0",
           zip_safe=False,
-          package_data={'d3rlpy': ['*.pyx',
-                                   '*.pxd',
-                                   '*.h',
-                                   '*.pyi',
-                                   'py.typed']},
+          package_data={'tjuOfflineRL': ['*.pyx',
+                                         '*.pxd',
+                                         '*.h',
+                                         '*.pyi',
+                                         'py.typed']},
           ext_modules=ext_modules,
-          entry_points={'console_scripts': ['d3rlpy=d3rlpy.cli:cli']})
+          entry_points={'console_scripts': ['tjuOfflineRL=tjuOfflineRL.cli:cli']})

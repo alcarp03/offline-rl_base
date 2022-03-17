@@ -20,4 +20,3 @@ build
 dist
 /.idea/
 *.egg-info
-.idea
