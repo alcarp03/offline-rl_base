@@ -5,12 +5,12 @@
 *.cpp
 *.so
 .python-version
-tjuOfflineRL_data
+d3rlpy_data
 test_data
 runs
-tjuOfflineRL_logs
+d3rlpy_logs
 docs/_build
-docs/tjuOfflineRL*.rst
+docs/d3rlpy*.rst
 docs/modules.rst
 docs/references/generated
 coverage.xml

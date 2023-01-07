@@ -31,12 +31,12 @@ RUN apt-get update && \
       git+https://github.com/takuseno/d4rl-atari && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/* && \
-    wget https://github.com/takuseno/tjuOfflineRL/archive/master.zip && \
+    wget https://github.com/takuseno/d3rlpy/archive/master.zip && \
     unzip master.zip && \
-    cd tjuOfflineRL-master && \
+    cd d3rlpy-master && \
     pip install --no-cache-dir . && \
     cd .. && \
-    rm -rf tjuOfflineRL-master master.zip
+    rm -rf d3rlpy-master master.zip
 
 EXPOSE 6006
 

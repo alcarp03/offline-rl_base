@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}_${{ matrix.python-version}}.whl
-          path: dist/tjuOfflineRL-*.whl
+          path: dist/d3rlpy-*.whl
           retention-days: 5

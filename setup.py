@@ -6,16 +6,16 @@ os.environ['CFLAGS'] = '-std=c++11'
 
 # get __version__ variable
 here = os.path.abspath(os.path.dirname(__file__))
-exec(open(os.path.join(here, 'tjuOfflineRL', '_version.py')).read())
+exec(open(os.path.join(here, 'd3rlpy', '_version.py')).read())
 
 if __name__ == "__main__":
     from numpy import get_include
     from Cython.Build import cythonize
 
     # setup Cython build
-    ext = Extension('tjuOfflineRL.dataset',
-                    sources=['tjuOfflineRL/dataset.pyx'],
-                    include_dirs=[get_include(), 'tjuOfflineRL/cpp/include'],
+    ext = Extension('d3rlpy.dataset',
+                    sources=['d3rlpy/dataset.pyx'],
+                    include_dirs=[get_include(), 'd3rlpy/cpp/include'],
                     language='c++',
                     extra_compile_args=["-std=c++11", "-O3", "-ffast-math"],
                     extra_link_args=["-std=c++11"])
@@ -27,7 +27,7 @@ if __name__ == "__main__":
                             })
 
     # main setup
-    setup(name="tjuOfflineRL",
+    setup(name="d3rlpy",
           version=__version__,
           description="An offline deep reinforcement learning library",
           long_description=open("README.md").read(),
@@ -65,10 +65,10 @@ if __name__ == "__main__":
           packages=find_packages(exclude=["tests*"]),
           python_requires=">=3.7.0",
           zip_safe=False,
-          package_data={'tjuOfflineRL': ['*.pyx',
+          package_data={'d3rlpy': ['*.pyx',
                                          '*.pxd',
                                          '*.h',
                                          '*.pyi',
                                          'py.typed']},
           ext_modules=ext_modules,
-          entry_points={'console_scripts': ['tjuOfflineRL=tjuOfflineRL.cli:cli']})
+          entry_points={'console_scripts': ['d3rlpy=d3rlpy.cli:cli']})
